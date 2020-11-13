@@ -1,0 +1,16 @@
+prometheus:
+  prometheusSpec:
+    thanos:
+      image: quay.io/thanos/thanos:v0.16.0
+      version: v0.16.0
+      objectStorageConfig:
+        name: thanos-objstore-secret
+        key: objstore.yml
+  service:
+    additionalPorts:
+      - name: grpc
+        port: 10901
+        targetPort: 10901
+      - name: metrics
+        port: 10902
+        targetPort: 10902
